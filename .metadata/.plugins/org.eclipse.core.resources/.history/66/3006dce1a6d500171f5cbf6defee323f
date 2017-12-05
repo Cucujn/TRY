@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app>
+    <servlet>
+    <servlet-name>ReadParams</servlet-name>
+    <servlet-class>com.weeklyreport.www</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ReadParams</servlet-name>
+    <url-pattern>/weeklyReports/ReadParams</url-pattern>
+  </servlet-mapping>
+</web-app>

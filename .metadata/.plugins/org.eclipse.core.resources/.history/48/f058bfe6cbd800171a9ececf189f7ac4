@@ -1,0 +1,29 @@
+package com.weekly.dbmanage;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class Dbmanage {
+	public Connection initDB() {
+		//初始化数据库的方法
+		Connection conn = null;
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			//加载数据库驱动
+			String url = "jdbc:mysql://localhost:3306/userdb?charaterEncoding=utf-8";
+			//定义数据库地址url 并设置编码格式
+			conn = DriverManager.getConnection(url,"root","");
+			//得到数据连接
+		}catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return conn;
+		//返回数据库连接
+	}
+		
+}

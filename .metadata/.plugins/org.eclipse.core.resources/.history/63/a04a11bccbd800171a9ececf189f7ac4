@@ -1,0 +1,22 @@
+package com.weekly.dbmanage;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class Dbmanage {
+	public Connection initDB() {
+		//初始化数据库连接方法
+		Connection conn = null ;
+		//创建一个Connection句柄
+		try {
+			//加载数据库驱动
+			Class.forName("com.mysql.jbdc.Driver");
+			//定义url地址，并设置编码格式
+			str
+		}
+		
+	}
+}

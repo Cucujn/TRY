@@ -1,0 +1,55 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="java.io.*,java.sql.*,java.util.*" %>
+<%@ page import="com.database.Db" %>
+<jsp:useBean id="DB" class="com.database.Db" scope="page"></jsp:useBean>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+	<%
+		request.setCharacterEncoding("UTF-8");
+		String day = request.getParameter("weekDiff");
+		String tablename =null;
+		String week = null;
+
+		if("0".equals(day)){ 
+			tablename="week0"; 
+			week="本周";
+		}
+		else if("1".equals(day)) {
+			tablename="week1";
+			week="前一周";
+		}
+		else if("2".equals(day)) {
+			tablename="week2";
+			week="前两周";
+		}
+		else if("3".equals(day)) {
+			tablename="week3";
+			week="前三周";
+		}
+		else if("4".equals(day)) {
+			tablename="week4";
+			week="前四周";
+		}
+		
+	%>
+<html>
+<head>
+<title>MIR 实验室<%=week %>登录之工作进度</title>
+</head>
+<body>
+<center><h1>MIR 实验室<%=week %>登录之工作进度</h1></center>
+<center><a href="default.jsp">[回到主选单]</a></center>
+<table border="1" align="center">
+<tr>
+	<th>姓名</th>
+	<th>本周完成事项</th>
+	<th>下周预定完成事项:<br>[<font color="red">预定完成日期</font>]工作描述</th>
+	<th>综合说明</th>
+	<th>登录日期</th>
+</tr>
+
+
+</table>
+
+</body>
+</html>

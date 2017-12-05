@@ -1,0 +1,12 @@
+package com.weekly.dao;
+
+import com.weekly.user.vo.UserRegister;
+
+public class UserDao {
+
+	public void insertUser(UserRegister user) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+}

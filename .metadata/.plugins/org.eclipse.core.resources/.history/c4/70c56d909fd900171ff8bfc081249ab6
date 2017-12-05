@@ -1,0 +1,12 @@
+package com.database;
+import com.vo.*;
+public class Judge {
+	public boolean userLogin(Vo u) {
+		if(u.getPassword().equals("123456")) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+}

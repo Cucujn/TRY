@@ -1,0 +1,73 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="java.sql.*" %>
+<%@ page import="com.database.*" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>主界面</title>
+</head>
+<body>
+<form action="listEachWeek" method="get">
+<form action="listEachPeople" method="get">
+<center>
+<h1>MIR 实验室工作进度登录网页</h1>
+<a href="register.jsp">[注册]</a>
+<%
+		request.setCharacterEncoding("utf-8");
+		PreparedStatement sql = null;
+		Connection conn = null;
+		ResultSet rst = null;
+		conn = Db.getConnection();
+		sql = conn.prepareStatement("select * from users");
+		rst = sql.executeQuery();
+%>
+<form action="form.jsp" method="post">
+选择姓名:<select name="name">
+			<option value="姓名"> 姓名  </option>
+			<%
+				while (rst.next()) {
+					out.print("<option value=\"" + rst.getString("username") + "\">" + rst.getString("username")
+							+ "</option>");
+				}
+			%>
+		</select>
+</form>
+</center>
+<h3><img src="http://img.25pp.com/uploadfile/youxi/images/2014/0531/20140531120644801.jpg" width=15 height=15>填写进度</h3>
+<center>
+
+</center>
+<ol>
+<li>请务必在每星期五下午五点前填写完毕。过了星期六午夜，系统自动跳到下一周，就无法再填写本周的进度了。
+<li>请务必每一栏都要填写，尤其是「本周预定完成事项」，一定要填入相关的「预定完成时间」。
+</ol>
+<hr>
+
+<h3><img src="http://img.25pp.com/uploadfile/youxi/images/2014/0531/20140531120644801.jpg" width=15 height=15>
+资料列表</h3>
+<ul>
+<li>每周填写的资料：
+<a href="http://localhost:8080/WeeklyReport/listEachWeek.jsp?weekDiff=0"> 本周</a> 
+、<a href="http://localhost:8080/WeeklyReport/listEachWeek.jsp?weekDiff=1">前一周</a>
+、<a href="http://localhost:8080/WeeklyReport/listEachWeek.jsp?weekDiff=2">前两周</a>
+、<a href="http://localhost:8080/WeeklyReport/listEachWeek.jsp?weekDiff=3">前三周</a>
+、<a href="http://localhost:8080/WeeklyReport/listEachWeek.jsp?weekDiff=4">前四周</a>
+<li>每个人的历史资料：<a><%="name" %></a>
+<li>每个人的最后一笔资料
+</ul>
+<hr>
+
+<!-- /////////// -->
+
+
+<h3><img src="http://img.25pp.com/uploadfile/youxi/images/2014/0531/20140531120644801.jpg" width=15 height=15>
+有关本系统</h3>
+<ul>
+<li>本系统特点：超级简单易用，适合忙碌的管理者
+</ul>
+</form>
+</form>
+</body>
+</html>

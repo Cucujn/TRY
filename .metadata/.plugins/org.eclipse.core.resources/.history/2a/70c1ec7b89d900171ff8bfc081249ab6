@@ -1,0 +1,69 @@
+package com.servlet;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+/**
+ * Servlet implementation class ServletDemo
+ */
+@WebServlet("/ServletDemo")
+public class ServletDemo extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public ServletDemo() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	private String userName;    //接收表单提交过来的账户
+	private String passWord;     //密码
+		public void doPost(HttpServletRequest request, HttpServletResponse response)
+		   throws ServletException, IOException {
+		  response.setContentType("text/html;charset=UTF-8");  //设置格式编码
+		  request.setCharacterEncoding("UTF-8");            //设置格式编码
+		  userName = request.getParameter("userName");     //接收表单传过来的用户账号
+		  passWord = request.getParameter("userPassword");  //用户密码
+		  insertDate();    //下面方法，把数据插入数据库
+		 }
+		 private void insertDate() {
+		  Connection con = null;  //一个连接对象
+		  con = (Connection) DB.getcon(con);   //得到一个连接
+		  PreparedStatement ps = null;    //用于插入数据
+		  //sql语句，向表user里面，插入name和pass的值
+		  String sql = "insert into user(name,password) values(?,?)";   
+		  ps = (PreparedStatement) DB.getpsta(con, sql);
+		  try {
+		   ps.setString(1, userName);
+		   ps.setString(2, passWord);
+		   ps.executeUpdate();
+		   ps.close();
+		  } catch (SQLException e) {
+		   e.printStackTrace();
+		  }
+		 }
+	}
+

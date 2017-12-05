@@ -1,0 +1,28 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="java.sql.*,com.database.*" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>工作进度填写</title>
+</head>
+<body>
+<center>
+<h1>MIR 实验室工作进度登录网页</h1>
+<jsp:useBean id="db" class="com.database.Db" scope="page"></jsp:useBean>
+	<%
+		request.setCharacterEncoding("UTF-8");
+		String username = new String(request.getParameter("name"));
+		session.setAttribute("username",username);
+		ResultSet rst = null;
+		PreparedStatement sql = null;
+		sql = db.conn.prepareStatement("select * from users where username=?");
+		sql.setString(1, username);
+		rst = sql.executeQuery();
+		out.print("<h2 align=\"center\">"+username+"的工作进度");
+		
+	%>
+	
+</body>
+</html>

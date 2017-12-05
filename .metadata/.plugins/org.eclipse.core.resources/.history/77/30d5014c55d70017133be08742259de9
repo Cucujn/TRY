@@ -1,0 +1,12 @@
+package com.weeklyreport.www;
+
+public class TsetBean {
+	private String message="³Â½àÄÈ";
+	public String getMessage() {
+		return(message);
+	}
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+}

@@ -1,0 +1,25 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<body>
+<
+<%
+String day = request.getParameter("weekDiff");
+%>
+<% if("0".equals(day)){ %>
+<title>实验室本周之工作进度</title> 
+<center>
+<h1>MIR 实验室本周登录之工作进度</h1>
+</center>
+<%}else{ %>
+<title>MIR 实验室前<%=day%>周登录之工作进度</title>
+<center>
+<h1>MIR 实验室周前<%=day%>周登录之工作进度</h1>
+</center>
+<%} %>
+</head>
+</body>
+</html>

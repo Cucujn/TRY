@@ -1,0 +1,25 @@
+<%@page import="jdk.nashorn.internal.ir.RuntimeNode.Request"%>  
+<%@ page language="java" contentType="text/html; charset=utf-8"  
+    pageEncoding="utf-8"%>  
+<%@ page import="com.Database.*"%>  
+<%@ page import="java.sql.*"%>  
+<%  
+    request.setCharacterEncoding("utf-8");  
+    String name = request.getParameter("name");  
+    String pro = request.getParameter("pro");  
+    String sql = "insert into personinfo(name , birthProvince) values('"+name+"','"+pro+"')";  
+    conDB db = new conDB();  
+    db.connectDB();  
+    Statement state = db.getConnection().createStatement();  
+    int flag = state.executeUpdate(sql);  
+    if(flag != 0)  
+    {  
+         out.println("<script>alert('插入成功！');history.go(-1);</script>");  
+    }  
+    else  
+    {  
+         out.println("<script>alert('插入失败！');history.go(-1);</script>");  
+    }  
+    state.close();  
+     
+%>  
